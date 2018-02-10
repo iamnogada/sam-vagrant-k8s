@@ -1,0 +1,28 @@
+---
+- name: Install k8s
+  hosts:  all
+  gather_facts: no
+  become: yes
+  become_method: sudo
+  
+  roles:
+    - common
+    - docker
+    - kubernetes
+#
+- name: Initilize Kubernetes Cluster
+  hosts: k8smaster
+  gather_facts: no
+  become: yes
+  become_method: sudo
+#
+  roles:
+   - k8smaster
+#
+#- name: Join nodes into Kubernetes Cluster
+#  hosts: k8sworker
+#  gather_facts: no
+
+#  roles:
+#    - k8sworker
+...

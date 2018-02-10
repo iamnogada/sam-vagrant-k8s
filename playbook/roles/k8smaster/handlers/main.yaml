@@ -1,0 +1,7 @@
+---
+- name: save join script
+  copy: 
+    content: "{{cluster_output}}"
+    dest: "/vagrant/join.sh"
+    mode: 0777
+...

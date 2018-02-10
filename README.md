@@ -19,3 +19,8 @@ copy right by Myguddy from http://patorjk.com/software/taag/#p=display&f=Old%20B
 </pre>
 
 
+** Vagrant SSH 환경을 로컬에서 동일하게 사용하기 위해
+아래와 같은 명령어로 ssh 설정을 잡아줌
+vagrant ssh-config [node name] >> ~/.ssh/config
+
+ssh [node name] 으로 로그인 할 수 있음

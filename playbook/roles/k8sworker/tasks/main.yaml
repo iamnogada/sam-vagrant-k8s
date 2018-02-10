@@ -1,0 +1,5 @@
+---
+
+- name: Worker Test
+  shell:  echo {{clusterip}} > ip.txt
+...

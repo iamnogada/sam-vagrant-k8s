@@ -1,8 +1,57 @@
+ENV["LC_ALL"] = "en_US.UTF-8"
+
+SUBNET_PREFIX = "172.168.0."
+MASTER_IP = SUBNET_PREFIX+"10"
+
+MASTER_MEM = 2048
+MASTER_CPUS = 2
+WORKER_MEM = 3072
+WORKER_CPUS = 1
+
+WORKER_NUM = 1
+WORKER_GROUP = "node[1:"+WORKER_NUM.to_s+"]"
+
+K8S_POD_CIDR = "192.168.0.0/16"
+
 Vagrant.configure("2") do |config|
 
     config.vm.box = "centos/7"
 
-    config.vm.define "proxy"
-    config.vm.define "web-server"
+    config.vm.define "master" do |master|
+        master.vm.provider :virtualbox do |vb|
+            vb.name = "master"
+            vb.memory = MASTER_MEM
+            vb.cpus = MASTER_CPUS
+        end
+        master.vm.hostname = "master.k8s.dev"
+        master.vm.network :private_network, ip: MASTER_IP
+    end
+    
+    (1..WORKER_NUM).each do |i|
+        config.vm.define "node#{i}" do |node|
+            node.vm.provider :virtualbox do |vb|
+                vb.name = "node#{i}"
+                vb.memory = WORKER_MEM
+                vb.cpus = WORKER_CPUS
+            end
+            node.vm.hostname = "node#{i}.k8s.dev"
+            node.vm.network :private_network, ip: SUBNET_PREFIX+"#{20+i}"
+        end
+    end
+
+    config.vm.provision "ansible" do |ansible|
+        ansible.playbook = "playbook/main.yaml"
+        ansible.groups = {
+            "k8smaster" => ["master"],
+            "k8smaster:vars" => {
+                "clusterip" => MASTER_IP,
+                "pod_cidr" => K8S_POD_CIDR
+                },
+            "k8sworker" => [WORKER_GROUP],
+            "k8sworker:vars" => {
+                "clusterip" => MASTER_IP
+                }
+        }
+    end
 
 end
