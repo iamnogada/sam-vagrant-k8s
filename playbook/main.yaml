@@ -4,6 +4,8 @@
   gather_facts: no
   become: yes
   become_method: sudo
+  vars:
+    value_test: "Hello"
   
   roles:
     - common

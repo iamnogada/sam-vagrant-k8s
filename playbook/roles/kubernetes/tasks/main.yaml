@@ -36,4 +36,5 @@
 
 - name: restart kubernetes
   command:  systemctl restart kubelet
+  value_test: "done k8s"
 ...
