@@ -1,0 +1,7 @@
+---
+
+- name: K8S cluster init
+  shell: kubeadm init --pod-network-cidr={{pod_cidr}} --apiserver-advertise-address={{clusterip}} --token={{kube_token.stdout}}
+  register: command_output
+
+...

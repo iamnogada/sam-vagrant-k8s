@@ -1,8 +1,0 @@
----
-- name: K8S Cluster Init
-  shell: kubeadm init --pod-network-cidr={{pod_cidr}} --apiserver-advertise-address={{clusterip}}
-  register: cluster_output
-  notify: save join script
-- debug:
-    msg: "Result: '{{cluster_output}}'"
-...

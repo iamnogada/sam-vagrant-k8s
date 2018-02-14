@@ -1,0 +1,10 @@
+---
+- name: save_out_put
+  copy: 
+    content: "{{command_output|json_query('stdout_lines')}}"
+    dest: /vagrant/join.sh
+    force: yes
+    mode: 0777
+
+
+...

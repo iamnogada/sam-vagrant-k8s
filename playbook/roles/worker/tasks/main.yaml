@@ -1,0 +1,8 @@
+---
+
+- name: Worker Test
+  shell:  echo {{kube_token.stdout}}
+
+- debug:
+  msg:  "Token:{{kube_token.stdout}}"
+...

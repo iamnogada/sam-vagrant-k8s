@@ -8,7 +8,7 @@
 - name: restart docker
   command:  systemctl restart docker
 
-- name: Adding Kubernetes repository
+- name: adding Kubernetes repository
   yum_repository:
     name: Kubernetes
     description: Kubernetes repo
@@ -30,11 +30,18 @@
     - kubelet
     - kubeadm
     - kubectl
-    
+
+     
 - name: register kubernetes kubelet as a service 
   command: systemctl enable kubelet
 
 - name: restart kubernetes
   command:  systemctl restart kubelet
   value_test: "done k8s"
+
+- name: generate token for master
+  shell:  kubeadm token generate
+  register: kube_token
+- debug:
+    msg: "Result: {{kube_token.stdout}}"
 ...
