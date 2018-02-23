@@ -3,7 +3,10 @@
   hosts:  all
   gather_facts: no
   become: yes
-  become_method: sudo  
+  become_method: sudo
+  vars:
+    - var_test: "var_test"
+
   roles:
     - common
     - docker
@@ -11,16 +14,21 @@
 #
 - name: ====> Initilize Kubernetes Cluster
   hosts: k8smaster
-  gather_facts: no
+  gather_facts: yes
   become: yes
   become_method: sudo
+  vars:
+    kube_join_sh: './roles/worker/files/join.sh'
 #
   roles:
    - master
 #
-- name: Join nodes into Kubernetes Cluster
+- name: ====> Join nodes into Kubernetes Cluster
   hosts: k8sworker
-
+  gather_facts: yes
+  become: yes
+  become_method: sudo
+  
   roles:
    - worker
 ...

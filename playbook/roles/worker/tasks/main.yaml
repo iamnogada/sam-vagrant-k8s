@@ -1,8 +1,8 @@
 ---
 
 - name: Worker Test
-  shell:  echo {{kube_token.stdout}}
+  shell:  echo {{kube_token}} > /vagrant/temp.txt
 
 - debug:
-  msg:  "Token:{{kube_token.stdout}}"
+  msg:  "Token:{{kube_token}}"
 ...

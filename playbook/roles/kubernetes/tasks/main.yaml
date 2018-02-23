@@ -39,9 +39,4 @@
   command:  systemctl restart kubelet
   value_test: "done k8s"
 
-- name: generate token for master
-  shell:  kubeadm token generate
-  register: kube_token
-- debug:
-    msg: "Result: {{kube_token.stdout}}"
 ...
