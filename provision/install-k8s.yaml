@@ -1,0 +1,31 @@
+---
+- name: change iptables for k8s
+  copy: src=./files/k8s.cnf dest=/etc/sysctl.d/k8s.conf
+- name: reflect kernel parameter for iptables
+  command: sysctl --system
+- name: restart docker
+  command: systemctl restart docker
+- name: adding k8s repo
+  yum_repository:
+    name: Kubernetes
+    description: Kubernetes repo
+    file: kubernetes
+    baseurl: http://yum.kubernetes.io/repos/kubernetes-el7-x86_64
+    gpgkey: [ "https://packages.cloud.google.com/yum/doc/yum-key.gpg", "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg" ]
+    enabled: yes
+    gpgcheck: yes
+- name: skip rebooting for installatyion on
+  command: setenforce 0
+- name: install kubelet, kubeadmm, kubectl
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - kubelet
+    - kubeadm
+    - kubectl
+- name: register kubernetes kubelete as a service
+  command: systemctl enable kubelet
+- name: restart kubernetes
+  command:  systemctl restart kubelet
+...

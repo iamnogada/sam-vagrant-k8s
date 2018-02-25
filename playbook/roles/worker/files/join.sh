@@ -1,0 +1,1 @@
+kubeadm join --token=4c69f1.fd80a5a7fd63c96e

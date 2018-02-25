@@ -1,0 +1,53 @@
+---
+- name: generate token for cluster
+  command: kubeadm token generate
+  register: result
+- set_fact:
+    kube_token: "{{result.stdout}}"
+- debug: var=kube_token
+- name: reset k8s cluster
+  command: kubeadm reset
+- name: init k8s cluster
+  command: kubeadm init --pod-network-cidr={{pod_cidr}} --apiserver-advertise-address={{cluster_ip}} --token={{kube_token}}
+  register: result
+- debug: var=result
+# openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+- name: get hash from k8s' ca
+  shell: "openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'"
+  register: result
+# checking the hash
+- debug: var=result
+- set_fact:
+    kube_hash: "{{result.stdout}}"
+- name: save shell for node to join into cluster
+  become: no
+  local_action: copy content="kubeadm join --token {{kube_token}} {{cluster_ip}}:6443 --discovery-token-ca-cert-hash sha256:{{kube_hash}}" dest=files/join.sh force=yes
+- name: read k8s config
+  shell: cat /etc/kubernetes/admin.conf
+  register: kube_config
+- name: mkdir for kube config
+  become: no
+  file:
+    path: $HOME/.kube
+- name: save config in .kube
+  become: no
+  copy: content={{kube_config.stdout}} dest=$HOME/.kube/config
+- name: save config for node
+  become: no
+  local_action: copy content="{{kube_config.stdout}}" dest=files/config force=yes
+
+- name: install pod network
+  become: no
+  shell: kubectl apply -f https://docs.projectcalico.org/v3.0/getting-started/kubernetes/installation/hosted/kubeadm/1.7/calico.yaml
+
+# - name: mkdir for kube config
+#   become: no
+#   shell: mkdir $HOME/.kube
+# - name: set config
+#   shell: cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
+# - name: chmod
+#   become: no
+#   shell: sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+...

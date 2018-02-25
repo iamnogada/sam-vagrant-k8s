@@ -1,0 +1,27 @@
+---
+- name: =====> Install docker & kubernetes tool
+  hosts: all
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  tasks:
+  - import_tasks: install-docker.yaml
+  - import_tasks: install-k8s.yaml
+
+- name: =====> Initialize K8S master
+  hosts: controller
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  tasks:
+  - import_tasks: init-k8s-master.yaml
+
+- name: =====> Initialize worker nodes
+  hosts: controller
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  tasks:
+  - import_tasks: init-k8s-worker.yaml
+
+...
