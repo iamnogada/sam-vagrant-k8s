@@ -18,3 +18,4 @@ fatal: [master]: FAILED! => {"changed": true, "cmd": "kubeadm init --pod-network
 
 
   sed -n -e '1p;$p' VagrantFile
+  sed  "/(\/dev\/[^\s]+[\s]+[^\s]+[\s]+swap[\s]+.*)" /etc/fstab

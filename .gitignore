@@ -23,6 +23,6 @@ hs_err_pid*
 
 .vagrant
 *.retry
-/provision/files/join.sh
-/provision//files/config
+provision/files/join.sh
+provision/files/config
 temp
