@@ -17,7 +17,7 @@
   - import_tasks: init-k8s-master.yaml
 
 - name: =====> Initialize worker nodes
-  hosts: controller
+  hosts: worker
   become: yes
   become_method: sudo
   gather_facts: no
