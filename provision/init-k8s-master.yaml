@@ -29,6 +29,7 @@
   become: no
   file:
     path: $HOME/.kube
+    state: directory
 - name: save config in .kube
   become: no
   copy: content={{kube_config.stdout}} dest=$HOME/.kube/config

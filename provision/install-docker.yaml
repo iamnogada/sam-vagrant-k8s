@@ -1,6 +1,14 @@
 ---
-- name: setting OS to no swapping
+# - name: setting OS to no swapping
+#   command: swapoff -a
+- name: Remove swapfile from /etc/fstab
+  mount:
+    name: swap
+    fstype: swap
+    state: absent
+- name: Disable swap
   command: swapoff -a
+  when: ansible_swaptotal_mb > 0
 - name: install yum utility
   package: 
     name: yum-utils
