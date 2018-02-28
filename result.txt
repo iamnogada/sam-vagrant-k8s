@@ -1,8 +1,0 @@
-NAMESPACE     NAME                                     READY     STATUS    RESTARTS   AGE
-kube-system   etcd-master.k8s.dev                      1/1       Running   0          1m
-kube-system   kube-apiserver-master.k8s.dev            1/1       Running   0          2m
-kube-system   kube-controller-manager-master.k8s.dev   1/1       Running   0          2m
-kube-system   kube-dns-6f4fd4bdf-nt5vp                 3/3       Running   0          2m
-kube-system   kube-router-xtt6t                        1/1       Running   0          2m
-kube-system   kube-scheduler-master.k8s.dev            1/1       Running   0          2m
-kube-system   kubernetes-dashboard-5bd6f767c7-k65q6    1/1       Running   0          38s
