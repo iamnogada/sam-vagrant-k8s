@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
     end
 
     config.vm.provision "ansible" do |ansible|
-        ansible.playbook = "provision/playbook.yaml"
+        ansible.playbook = "provision/dummy.yaml"
         ansible.groups = {
             "controller" => ["master"],
             "controller:vars" => {

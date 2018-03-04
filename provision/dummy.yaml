@@ -1,0 +1,4 @@
+---
+- name: This is dummy playbook in order to generate inventory files from vagrant
+  hosts: all
+...

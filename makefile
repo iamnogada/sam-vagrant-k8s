@@ -1,4 +1,4 @@
-FF:=$(shell ls)
 
-GET:
-	@echo "Files:" $(FF)
+vms:
+	vagrant up
+
