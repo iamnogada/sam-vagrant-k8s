@@ -18,39 +18,40 @@
 copy right by Myguddy from http://patorjk.com/software/taag/#p=display&f=Old%20Banner&t=Welcome%20to
 </pre>
 
+## Required SW
+* Vagrant : https://www.vagrantup.com/downloads.html
+* virtualbox : https://www.virtualbox.org/
+* ansible: brew install ansible
 
-** Vagrant SSH 환경을 로컬에서 동일하게 사용하기 위해
-아래와 같은 명령어로 ssh 설정을 잡아줌
-vagrant ssh-config [node name] >> ~/.ssh/config
+## optional SW
+* vagrant-hostsupdater: vagrant install vagrant-hostsupdater
+  vagrant vm host명을 로컬 hosts에 자동으로 추가 삭제(vm 삭제시)
 
-ssh [node name] 으로 로그인 할 수 있음
+## tested environment
+* Host OS: maxOS High Sierra 10.13.3
+* Homebrew : Homebrew 1.5.3
+* Virtualbox : 5.2.8 r121009 
+* vagrant : 2.0.2
+* ansible : 2.4.3.0
+
+
+## How to run k8s(one master and one worker)
+1. change contents of 'VagrantFile' : IPs or Number of worker node
+1. vagrant up --no-provision (for better performance)
+1. vagrant provision
+1. make all
+1. goto kubernetes and click 'skip' to sign in
+
+### installed apps in kubernetes
+* kubernetes dashboard : https://[master-ip]:30000
+* grafana : http://[master-ip]:30001
 
 
 
-kubeadm join --token ddc635.7c3fbb93908ce3fc 10.0.2.15:6443 --discovery-token-ca-cert-hash sha256:7f25b5988ccca3baaeaec82f710aa55143c0d1b020fd9224b303d8263cf4daeb
-
-
-kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=172.168.0.10
-
-## Create service account
-
-### Examples of possible operations over these resources are:
-
-create
-get
-delete
-list
-update
-edit
-watch
-exec
-
-#### steps for user: employee, group=bitnami
-* kubectl create namespace office
-* openssl genrsa -out employee.key 2048
-* openssl req -new -key employee.key -out employee.csr -subj "/CN=employee/O=bitnami"
-* cluster ca: CA_LOCATION/ca.crt -CAkey CA_LOCATION/ca.key
-* openssl x509 -req -in employee.csr -CA CA_LOCATION/ca.crt -CAkey CA_LOCATION/ca.key -CAcreateserial -out employee.crt -days 500
-* kubectl config set-credentials employee --client-certificate=/home/employee/.certs/employee.crt  --client-key=/home/employee/.certs/employee.key
-* kubectl config set-context employee-context --cluster=minikube --namespace=office --user=employee
-
+### more function
+* save current status and suspend : vagrant suspend
+* resume vms : vagrant resume
+* power off: vagrant halt
+* boot : vagrant up
+* destroy vms: vagrant destroy
+* cf: if want execute on specific vm, then vagrant up [name of host in VagrantFile]
