@@ -37,8 +37,8 @@ copy right by Myguddy from http://patorjk.com/software/taag/#p=display&f=Old%20B
 
 ## How to run k8s(one master and one worker)
 1. change contents of 'VagrantFile' : IPs or Number of worker node
-1. vagrant up --no-provision (for better performance)
-1. vagrant provision
+1. vagrant up master (for better performance)
+1. vagrant up node1
 1. make all
 1. goto kubernetes and click 'skip' to sign in
 
