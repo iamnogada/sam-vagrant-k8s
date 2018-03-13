@@ -77,22 +77,35 @@ rules:
   verbs: ["get"]
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: RoleBinding
+# metadata:
+#   name: kubernetes-dashboard-minimal
+#   namespace: kube-system
+# roleRef:
+#   apiGroup: rbac.authorization.k8s.io
+#   # kind: Role
+#   # name: kubernetes-dashboard-minimal
+#   kind: ClusterRole
+#   name: cluster-admin
+# subjects:
+# - kind: ServiceAccount
+#   name: kubernetes-dashboard
+#   namespace: kube-system
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
 metadata:
-  name: kubernetes-dashboard-minimal
-  namespace: kube-system
+  name: kubernetes-dashboard
+  labels:
+    k8s-app: kubernetes-dashboard
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  # kind: Role
-  # name: kubernetes-dashboard-minimal
   kind: ClusterRole
   name: cluster-admin
 subjects:
 - kind: ServiceAccount
   name: kubernetes-dashboard
   namespace: kube-system
-
 ---
 # ------------------- Dashboard Deployment ------------------- #
 
@@ -123,7 +136,7 @@ spec:
         args:
           - --auto-generate-certificates
           - --token-ttl=0
-          - --authentication-mode=basic
+#          - --authentication-mode=basic
           - --auto-generate-certificates=true
           # Uncomment the following line to manually specify Kubernetes API server Host
           # If not specified, Dashboard will attempt to auto discover the API server and connect
