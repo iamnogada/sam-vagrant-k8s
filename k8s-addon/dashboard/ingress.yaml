@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: k8s-dashboard
+spec:
+  tls:
+    - hosts:
+      - k8s.nogada.dev
+      secretName: k8s.nogada.dev
+  rules:
+  - host: k8s.nogada.com
+    http:
+      paths:
+      - path:
+        backend:
+          serviceName: kubernetes-dashboard
+          servicePort: 443
