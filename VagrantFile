@@ -13,7 +13,7 @@ MASTER_CPUS = 2
 # Specification of Worker node and number of them
 WORKER_MEM = 2048
 WORKER_CPUS = 2
-WORKER_NUM = 1
+WORKER_NUM = 3
 
 # The names for VM and hostname
 VMNAME="k8s"
