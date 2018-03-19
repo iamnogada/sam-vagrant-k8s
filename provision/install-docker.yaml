@@ -23,16 +23,21 @@
     url: https://download.docker.com/linux/centos/docker-ce.repo
     dest: /etc/yum.repos.d/docker-ce.repo
 # Need to install selinux first required for docker-ce-17.03.2.ce
-- name: install docker for selinux
-  yum:
-    name: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch.rpm 
-    disable_gpg_check: yes
-    update_cache: yes
-    skip_broken: yes
+
+
+# - name: install docker for selinux
+#   yum:
+#     name: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch.rpm 
+#     disable_gpg_check: yes
+#     update_cache: yes
+#     skip_broken: yes
 - name: install docker-ce
   yum:
-    name: docker-ce-17.03.2.ce
+    name: docker-ce
     update_cache: yes
+
+
+
 - name: register docker as a service
   command: systemctl enable docker
 - name: start docker service
