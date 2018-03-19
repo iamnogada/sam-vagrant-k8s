@@ -26,3 +26,4 @@ hs_err_pid*
 provision/files/join.sh
 provision/files/config
 temp
+.vscode
