@@ -5,17 +5,19 @@ setup:
 	rm -rf ~/.kube/config
 	cp provision/files/config ~/.kube/config
 
-apps: setup
+apps:
 	kubectl create secret generic kubernetes-dashboard-certs --from-file=./yaml/dashboard/cert -n kube-system 
 	#kubectl create -f yaml/dashboard/dashboard-admin.yaml
 	kubectl create -f yaml/dashboard/dashboard.yaml -n kube-system
 	open https://172.168.0.10:30000
 
-mon: setup
-	kubectl create -f yaml/influxdb/ -n kube-system
-	kubectl create -f yaml/rbac/heapster-rbac.yaml -n kube-system
+mon:
+	kubectl create -f yaml/influxdb/
+	kubectl create -f yaml/rbac/heapster-rbac.yaml 
 	open http://172.168.0.10:30001
 
+ing:
+	kubectl create secret tls nogada --key ./yaml/dashboard/cert/dashboard.key --cert ./yaml/dashboard/cert/dashboard.crt -n kube-system
 	
 clean:
 	kubectl delete secret kubernetes-dashboard-certs -n kube-system

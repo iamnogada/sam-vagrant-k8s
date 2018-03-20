@@ -11,7 +11,7 @@ MASTER_MEM = 3072
 MASTER_CPUS = 2
 
 # Specification of Worker node and number of them
-WORKER_MEM = 2048
+WORKER_MEM = 3072
 WORKER_CPUS = 2
 WORKER_NUM = 2
 
