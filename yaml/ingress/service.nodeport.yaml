@@ -16,3 +16,6 @@ spec:
     protocol: TCP
   selector:
     app: ingress-nginx
+  externalIPs:
+  - 172.168.0.10
+  - 172.168.0.21

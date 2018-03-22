@@ -20,8 +20,10 @@ copy right by Myguddy from http://patorjk.com/software/taag/#p=display&f=Old%20B
 
 ## Required SW
 * Vagrant : https://www.vagrantup.com/downloads.html
+* Vagrant Host manager : vagrant plugin install vagrant-hostmanager
 * virtualbox : https://www.virtualbox.org/
 * ansible: brew install ansible
+* kubectl : brew install kubectl
 
 ## optional SW
 * vagrant-hostsupdater: vagrant install vagrant-hostsupdater
