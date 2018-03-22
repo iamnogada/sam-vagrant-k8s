@@ -16,9 +16,9 @@ mon:
 	kubectl create -f yaml/rbac/heapster-rbac.yaml 
 	open http://172.168.0.10:30001
 
-ing:
+secret:
 	kubectl create secret tls nogada --key ./yaml/dashboard/cert/dashboard.key --cert ./yaml/dashboard/cert/dashboard.crt -n kube-system
-	
+	kubectl create secret tls default-tls  --key ./yaml/dashboard/cert/dashboard.key --cert ./yaml/dashboard/cert/dashboard.crt -n default
 clean:
 	kubectl delete secret kubernetes-dashboard-certs -n kube-system
 	kubectl delete -f yaml/dashboard/dashboard.yaml -n kube-system
@@ -26,8 +26,8 @@ clean:
 	kubectl delete -f yaml/influxdb/ -n kube-system
 	kubectl delete -f yaml/rbac/heapster-rbac.yaml -n kube-system
 
-addUser:
-	kubectl create namespace nogada
+# addUser:
+# 	kubectl create namespace nogada
 	#kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
 
 

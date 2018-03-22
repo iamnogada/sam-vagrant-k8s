@@ -5,10 +5,10 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  # tls:
-  # - hosts:
-  #   - cafe.example.com
-  #   secretName: cafe-secret
+  tls:
+  - hosts:
+    - sample.nogada.dev
+    secretName: default-tls
   rules:
   - http:
       paths:
