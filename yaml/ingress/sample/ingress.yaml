@@ -2,17 +2,16 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: hello-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   tls:
   - hosts:
     - sample.nogada.dev
     secretName: default-tls
   rules:
-  - http:
+  - host: sample.nogada.dev
+    http:
       paths:
       - path: /
         backend:
-          serviceName: hello-world-svc
+          serviceName: nginx-deployment-svc
           servicePort: 8080
