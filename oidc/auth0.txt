@@ -1,2 +1,0 @@
-clientid: qqsVPbehMkxJBCFH1cJ2xQ-GxcDSHPqH
-client secret: m6J1x4HIzaJ1yXNNOt6I4bpnZnLnS_B_VroxZGzroyWDOfxKqAZ8hITrqvuVRlbq

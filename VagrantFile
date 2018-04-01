@@ -1,7 +1,7 @@
 ENV["LC_ALL"] = "en_US.UTF-8"
 
 # The subnet of VMs
-SUBNET_PREFIX = "172.168.0."
+SUBNET_PREFIX = "172.168.50."
 
 # Master IP of k8s
 MASTER_IP = SUBNET_PREFIX+"10"
@@ -16,7 +16,7 @@ WORKER_CPUS = 2
 WORKER_NUM = 2
 
 # The names for VM and hostname
-VMNAME="k8s"
+VMNAME="kube"
 DOMAIN="nogada.dev"
 WORKER_GROUP = VMNAME+"[1:"+WORKER_NUM.to_s+"]"
 
