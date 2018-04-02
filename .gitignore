@@ -27,3 +27,4 @@ provision/files/join.sh
 provision/files/config
 temp
 .vscode
+vm/master
