@@ -34,7 +34,7 @@ copy right by Myguddy from http://patorjk.com/software/taag/#p=display&f=Old%20B
 * ansible : 2.5.0
 
 
-## How to run k8s(one master and thress workers)
+## How to run k8s(one master and three workers)
 1. change contents of 'VagrantFile' : IPs or Number of worker node
    * Master: 2 cpu, 3072MB, 172.168.50.10
    * Worker: 3 node, 4 cpu, 3072MB, 172.168.50.21~23
