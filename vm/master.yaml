@@ -32,32 +32,7 @@ authorizationModes:
 # tokenTTL: <time duration>
 # selfHosted: <bool>
 apiServerExtraArgs:
-  enable-bootstrap-token-auth: "false"
-#   <argument>: <value|string>
-# controllerManagerExtraArgs:
-#   <argument>: <value|string>
-#   <argument>: <value|string>
-# schedulerExtraArgs:
-#   <argument>: <value|string>
-#   <argument>: <value|string>
-# apiServerExtraVolumes:
-# - name: <value|string>
-#   hostPath: <value|string>
-#   mountPath: <value|string>
-# controllerManagerExtraVolumes:
-# - name: <value|string>
-#   hostPath: <value|string>
-#   mountPath: <value|string>
-# schedulerExtraVolumes:
-# - name: <value|string>
-#   hostPath: <value|string>
-#   mountPath: <value|string>
-# apiServerCertSANs:
-# - <name1|string>
-# - <name2|string>
-# certificatesDir: <string>
-# imageRepository: <string>
-# unifiedControlPlaneImage: <string>
-# featureGates:
-#   <feature>: <bool>
-#   <feature>: <bool>
+  oidc-issuer-url: https://nogada.auth0.com
+  oidc-client-id: 7Neh6Ja1bKW7c58uOjQ0dE5gNe0lClxc
+  oidc-username-claim: email
+  oidc-groups-claim: groups
