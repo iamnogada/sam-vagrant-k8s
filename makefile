@@ -16,4 +16,4 @@ ingress:
 clean:
 	kubectl delete secret kubernetes-dashboard-certs
 	kubectl delete -f ./yaml/dashboard/ -n kube-system
-	kubectl delete -f yaml/monitoring/
+	kubectl delete -f ./yaml/monitoring/

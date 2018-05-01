@@ -9,7 +9,7 @@ authorizationModes:
 - Node
 - RBAC
 apiServerExtraArgs:
-  oidc-issuer-url: https://nogada.auth0.com
+  oidc-issuer-url: https://dex.k8s.example.org/dex
   oidc-client-id: 7Neh6Ja1bKW7c58uOjQ0dE5gNe0lClxc
   oidc-username-claim: email
   oidc-groups-claim: groups
