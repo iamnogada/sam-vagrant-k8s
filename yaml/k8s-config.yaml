@@ -1,0 +1,15 @@
+# https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/#config-file
+apiVersion: kubeadm.k8s.io/v1alpha1
+kind: MasterConfiguration
+api:
+  advertiseAddress: 172.168.50.10
+networking:
+  podSubnet: 192.168.0.0/16
+authorizationModes:
+- Node
+- RBAC
+apiServerExtraArgs:
+  oidc-issuer-url: https://dex.k8s.example.org/dex
+  oidc-client-id: 7Neh6Ja1bKW7c58uOjQ0dE5gNe0lClxc
+  oidc-username-claim: email
+  oidc-groups-claim: groups

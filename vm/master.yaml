@@ -1,0 +1,38 @@
+apiVersion: kubeadm.k8s.io/v1alpha1
+kind: MasterConfiguration
+api:
+  advertiseAddress: 172.168.50.10
+  # bindPort: <int>
+# etcd:
+#   endpoints:
+#   - <endpoint1|string>
+#   - <endpoint2|string>
+#   caFile: <path|string>
+#   certFile: <path|string>
+#   keyFile: <path|string>
+#   dataDir: <path|string>
+#   extraArgs:
+#     <argument>: <value|string>
+#     <argument>: <value|string>
+#   image: <string>
+# kubeProxy:
+#   config:
+#     mode: <value|string>
+networking:
+  # dnsDomain: <string>
+  # serviceSubnet: <cidr>
+  podSubnet: 192.168.0.0/16
+# kubernetesVersion: <string>
+# cloudProvider: <string>
+# nodeName: <string>
+authorizationModes:
+- Node
+- RBAC
+# token: <string>
+# tokenTTL: <time duration>
+# selfHosted: <bool>
+apiServerExtraArgs:
+  oidc-issuer-url: https://nogada.auth0.com
+  oidc-client-id: 7Neh6Ja1bKW7c58uOjQ0dE5gNe0lClxc
+  oidc-username-claim: email
+  oidc-groups-claim: groups

@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: lab7
+  name: one-leader-role
+rules:
+- apiGroups: [""]
+  resources: ["*"]
+  verbs: ["*"] # You can also use ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: one-leader-rb
+  namespace: lab7
+subjects:
+  - kind: User
+    name: one-leader
+    apiGroup: ""
+roleRef:
+  kind: Role
+  name: one-leader-role
+  apiGroup: ""

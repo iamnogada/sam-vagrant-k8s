@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-ingress
+spec:
+  tls:
+  - hosts:
+    - sample.nogada.dev
+    secretName: default-tls
+  rules:
+  - host: sample.nogada.dev
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-deployment-svc
+          servicePort: 8080

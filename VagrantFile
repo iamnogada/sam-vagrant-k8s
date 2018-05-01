@@ -1,7 +1,7 @@
 ENV["LC_ALL"] = "en_US.UTF-8"
 
 # The subnet of VMs
-SUBNET_PREFIX = "172.168.0."
+SUBNET_PREFIX = "172.168.50."
 
 # Master IP of k8s
 MASTER_IP = SUBNET_PREFIX+"10"
@@ -12,8 +12,8 @@ MASTER_CPUS = 2
 
 # Specification of Worker node and number of them
 WORKER_MEM = 3072
-WORKER_CPUS = 2
-WORKER_NUM = 2
+WORKER_CPUS = 4
+WORKER_NUM = 3
 
 # The names for VM and hostname
 VMNAME="k8s"
@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
         end
         k8s.vm.hostname = VMNAME+"."+DOMAIN
         k8s.vm.network :private_network, ip: MASTER_IP
-        k8s.vm.synced_folder "./shared", "/vagrant", type: "nfs"
+        k8s.vm.synced_folder "./", "/vagrant", type: "nfs"
     end
     
     (1..WORKER_NUM).each do |i|
@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
             end
             node.vm.hostname = VMNAME+"#{i}."+DOMAIN
             node.vm.network :private_network, ip: SUBNET_PREFIX+"#{20+i}"
-            # node.vm.synced_folder "./shared", "/vagrant", type: "nfs"
+            node.vm.synced_folder "./", "/vagrant", type: "nfs"
         end
     end
     # config.hostsupdater.remove_on_suspend = false
