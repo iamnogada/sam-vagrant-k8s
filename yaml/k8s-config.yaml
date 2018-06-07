@@ -8,8 +8,12 @@ networking:
 authorizationModes:
 - Node
 - RBAC
-apiServerExtraArgs:
-  oidc-issuer-url: https://dex.k8s.example.org/dex
-  oidc-client-id: 7Neh6Ja1bKW7c58uOjQ0dE5gNe0lClxc
-  oidc-username-claim: email
-  oidc-groups-claim: groups
+# controllerManagerExtraArgs:
+#   kube-controller-manager:
+#     horizontal-pod-autoscaler-use-rest-clients: false
+# apiServerExtraArgs:
+#   oidc-issuer-url: https://dex.example.com:32000
+#   oidc-client-id: example-app
+#   oidc-username-claim: email
+#   oidc-groups-claim: groups
+#   oidc-ca-file: /etc/ssh/openid-ca.pem
