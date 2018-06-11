@@ -1,10 +1,10 @@
 dashboard:
 	kubectl create secret generic kubernetes-dashboard-certs --from-file=./yaml/cert -n kube-system 
-	kubectl create -f ./yaml/dashboard/dashboard2.yaml -n kube-system
+	kubectl create -f ./yaml/dashboard/dashboard.yaml -n kube-system
 mon:
 	kubectl create -f yaml/monitoring/
 metric:
-	kubectl apply -f ./yaml/metric -n kube-system
+	kubectl apply -f ./yaml/metrics-server -n kube-system
 helm:
 	helm init
 	kubectl apply -f ./yaml/helm/
